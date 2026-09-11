@@ -71,6 +71,17 @@
 
       --font: 'Outfit', sans-serif;
       --font-display: 'Playfair Display', serif;
+
+      /* ── Vivid accent system (2026-09-11): the app's own palette — indigo
+         night sky, violet, and the warm gold of the droplet avatar — used as
+         a real gradient instead of flat indigo-on-white. */
+      --primary-rgb: 69, 69, 192;
+      --gold: #F0A93E;
+      --gold-dark: #C9821A;
+      --gold-pale: #FFF3DE;
+      --rose: #E0507C;
+      --grad-vivid: linear-gradient(120deg, var(--primary) 0%, var(--accent) 45%, var(--rose) 75%, var(--gold) 100%);
+      --grad-vivid-soft: linear-gradient(120deg, rgba(69,69,192,0.10) 0%, rgba(124,92,224,0.10) 40%, rgba(224,80,124,0.09) 72%, rgba(240,169,62,0.12) 100%);
     }
 
     /* ============================================================  RESET  */
@@ -249,7 +260,7 @@
     .section-divider {
       width: 44px;
       height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      background: var(--grad-vivid);
       border-radius: 2px;
       margin: 14px auto 0;
     }
@@ -263,12 +274,16 @@
 
     .hero-glow {
       position: absolute !important;
-      top: -60px;
+      top: -80px;
       left: 50%;
       transform: translateX(-50%);
-      width: 700px;
-      height: 500px;
-      background: radial-gradient(ellipse, rgba(69, 69, 192, 0.06) 0%, transparent 70%);
+      width: 900px;
+      height: 560px;
+      background:
+        radial-gradient(ellipse 320px 260px at 22% 30%, rgba(69, 69, 192, 0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 260px at 78% 25%, rgba(224, 80, 124, 0.11) 0%, transparent 70%),
+        radial-gradient(ellipse 340px 280px at 50% 75%, rgba(240, 169, 62, 0.14) 0%, transparent 70%);
+      filter: blur(10px);
       pointer-events: none;
       z-index: 0;
     }
@@ -282,16 +297,17 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--primary-pale);
-      border: 1px solid var(--border);
+      background: var(--grad-vivid-soft);
+      border: 1px solid rgba(124, 92, 224, 0.22);
       padding: 6px 18px;
       border-radius: 30px;
       color: var(--primary-dark);
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.82rem;
       margin-bottom: 26px;
       letter-spacing: 0.4px;
       text-transform: uppercase;
+      box-shadow: 0 2px 14px rgba(224, 80, 124, 0.08);
     }
 
     .hero h1 {
@@ -305,7 +321,7 @@
     }
 
     .hero h1 .grad {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 60%, var(--gold-dark) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -369,13 +385,13 @@
     }
 
     .btn-primary {
-      background: var(--primary);
+      background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
       color: #fff;
       box-shadow: 0 6px 20px var(--primary-glow);
     }
 
     .btn-primary:hover {
-      background: var(--primary-dark);
+      background: linear-gradient(120deg, var(--primary-dark) 0%, var(--primary) 100%);
       transform: translateY(-2px);
       box-shadow: 0 10px 30px var(--primary-glow);
     }
@@ -1008,8 +1024,8 @@
     }
 
     .model-card.featured {
-      border-color: var(--primary);
-      background: linear-gradient(145deg, #fff 0%, var(--primary-pale) 100%);
+      border-color: var(--accent);
+      background: linear-gradient(145deg, #fff 0%, #F7F2FF 60%, #FFF6E8 100%);
     }
 
     .model-badge {
@@ -1151,16 +1167,16 @@
     }
 
     .pricing-card.featured-plan {
-      border-color: var(--primary);
-      background: linear-gradient(155deg, #FFFFFF 0%, #F5F3FF 100%);
-      box-shadow: 0 12px 36px var(--primary-glow);
+      border-color: var(--accent);
+      background: linear-gradient(155deg, #FFFFFF 0%, #F7F2FF 55%, #FFF6E8 100%);
+      box-shadow: 0 14px 38px rgba(224, 80, 124, 0.14), 0 8px 24px var(--primary-glow);
     }
 
     .pricing-badge {
       position: absolute;
       top: -14px;
       right: 24px;
-      background: linear-gradient(135deg, #7C5CE0, #4545C0);
+      background: linear-gradient(120deg, #7C5CE0, #4545C0 55%, var(--gold-dark));
       color: #fff;
       padding: 5px 16px;
       border-radius: 20px;
@@ -1265,7 +1281,7 @@
     }
 
     .btn-primary-plan {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 60%, var(--gold-dark) 100%);
       color: #FFFFFF;
       box-shadow: 0 6px 20px var(--primary-glow);
     }
@@ -1644,8 +1660,8 @@
             <span style="color: #f7fa50;">▶</span> &nbsp;<span class="es">Google Play Store</span><span
               class="en">Google Play Store</span>
           </a>
-          <span style="font-size: 0.8rem; opacity: 0.7; color: var(--text-muted); line-height: 1.4;">Right now in Close
-            Tests in Google Waiting for Comercial Release.</span>
+          <span style="font-size: 0.8rem; opacity: 0.7; color: var(--text-muted); line-height: 1.4;">Currently in closed testing on
+            Google Play, awaiting production release.</span>
         </div>
         <div
           style="display: flex; flex-direction: column; align-items: center; gap: 6px; width: 280px; text-align: center;">
@@ -1653,8 +1669,8 @@
             id="btn-testflight" style="width: 100%; display: flex; justify-content: center; align-items: center;">
             🍏 &nbsp;<span class="es">iOS TestFlight (Beta)</span><span class="en">iOS TestFlight (Beta)</span>
           </a>
-          <span style="font-size: 0.8rem; opacity: 0.7; color: var(--text-muted); line-height: 1.4;">Applying for
-            Apple's Apple Store tests.</span>
+          <span style="font-size: 0.8rem; opacity: 0.7; color: var(--text-muted); line-height: 1.4;">Live now in beta —
+            join to try it today.</span>
         </div>
       </div>
 
@@ -1777,10 +1793,10 @@
           <div class="feature-icon">📊</div>
           <h3 class="es">Evaluación Psicológica Completa</h3>
           <h3 class="en">Comprehensive Psychological Testing</h3>
-          <p class="es">Realiza pruebas científicas OCEAN+ y MBTI ampliadas (con análisis profundos de 250-400
+          <p class="es">Realiza pruebas científicas OCEAN (Mini-IPIP, validado) y 16 Tipos ampliados (con análisis profundos de 250-400
             palabras). Genera y exporta reportes individuales o resúmenes globales en informes clínicos PDF totalmente
             locales y privados.</p>
-          <p class="en">Take scientific OCEAN+ and expanded MBTI personality tests (featuring deep 250-400 word
+          <p class="en">Take the scientifically validated OCEAN (Mini-IPIP) and expanded 16 Types personality tests (featuring deep 250-400 word
             analysis). Generate and export individual or global summary clinical PDF reports entirely offline.</p>
         </div>
         <div class="feature-card">
@@ -2039,8 +2055,8 @@
             <div class="flist-item">
               <div class="flist-item-icon">📊</div>
               <div>
-                <h5 class="es">Tests de Personalidad (OCEAN+ / MBTI Ampliados)</h5>
-                <h5 class="en">Personality Tests (Expanded OCEAN+ / MBTI)</h5>
+                <h5 class="es">Tests de Personalidad (OCEAN validado / 16 Tipos Ampliados)</h5>
+                <h5 class="en">Personality Tests (Validated OCEAN / Expanded 16 Types)</h5>
                 <p class="es">Realiza pruebas psicológicas de base científica directamente en tu dispositivo, con
                   perfiles detallados de 250 a 400 palabras.</p>
                 <p class="en">Take scientifically grounded psychological tests directly on your device, featuring
@@ -2170,10 +2186,10 @@
                 <h5 class="es">Exportación de PDF al Instante (Individuales y Resumen Global)</h5>
                 <h5 class="en">Instant PDF Export (Individual & Global Summary)</h5>
                 <p class="es">Genera y exporta localmente reportes PDF oficiales y detallados de tu historial del
-                  diario, reportes individuales de tus tests de personalidad OCEAN+ / MBTI, o un resumen global
+                  diario, reportes individuales de tus tests de personalidad OCEAN / 16 Tipos, o un resumen global
                   integrado.</p>
                 <p class="en">Locally generate and export official, detailed PDF reports of your diary history,
-                  individual OCEAN+ / MBTI personality profiles, or an integrated global summary.</p>
+                  individual OCEAN / 16 Types personality profiles, or an integrated global summary.</p>
               </div>
             </div>
             <div class="flist-item">
@@ -2319,7 +2335,7 @@
           <!-- Anima Logic (Liquid AI LFM 2.5 1.2B) - SPECIALIZED MODULE -->
           <div class="model-card">
             <div class="model-badge" style="background: #7C5CE0;">
-              🧠 <span class="es">Módulo Especializado · $2.99</span><span class="en">Specialized Module · $2.99</span>
+              🧠 <span class="es">Incluido con Pro</span><span class="en">Included with Pro</span>
             </div>
             <div class="model-name">Anima Logic</div>
             <div class="model-sub es">Liquid AI LFM 2.5 (1.2B) · Razonamiento Deductivo</div>
@@ -2340,14 +2356,14 @@
                 <div class="spec-dot"></div><span class="es"><strong>Alta Velocidad &amp; Bajo Peso:</strong> Inferencia estructurada ultrarrápida con apenas ~731 MB de tamaño.</span><span class="en"><strong>High-Speed &amp; Compact:</strong> Ultra-fast structured inference with only ~731 MB in size.</span>
               </li>
               <li class="spec-item">
-                <div class="spec-dot"></div><span class="es"><strong>Pago Único Accesible:</strong> Desbloquea este cerebro de por vida por solo <strong>$2.99 USD</strong>.</span><span class="en"><strong>Affordable One-Time:</strong> Unlock this brain lifetime for only <strong>$2.99 USD</strong>.</span>
+                <div class="spec-dot"></div><span class="es"><strong>Incluido con Pro:</strong> Disponible en el plan mensual, anual o vitalicio, junto a todos los demás cerebros.</span><span class="en"><strong>Included with Pro:</strong> Available on the monthly, annual, or lifetime plan, alongside every other brain.</span>
               </li>
             </ul>
           </div>
 
           <!-- Anima Deep (Gemma 4 E2B QAT) - ADVANCED REASONING -->
           <div class="model-card featured">
-            <div class="model-badge">⭐ <span class="es">Razonamiento Profundo · $4.99</span><span class="en">Deep Reasoning · $4.99</span></div>
+            <div class="model-badge">⭐ <span class="es">Incluido con Pro</span><span class="en">Included with Pro</span></div>
             <div class="model-name">Anima Deep</div>
             <div class="model-sub es">Google DeepMind Gemma 4 E2B QAT · Sabio &amp; Visión</div>
             <div class="model-sub en">Google DeepMind Gemma 4 E2B QAT · Sage &amp; Vision</div>
@@ -2394,20 +2410,20 @@
             <!-- Anima Logic Column -->
             <div style="flex: 1; min-width: 260px; max-width: 360px; line-height: 1.7; color: var(--text-mid); text-align: justify; font-size: 0.95rem; border-right: 1px solid var(--border-subtle); padding-right: 20px;">
               <span class="es">
-                <strong>🧠 Anima Logic (Liquid AI LFM 2.5 1.2B):</strong> Módulo especializado en razonamiento deductivo y lógica estricta. Utiliza la revolucionaria arquitectura LFM de Liquid AI calibrada para análisis matemático, descomposición analítica de problemas y estructuración de proyectos complejos sin rodeos ni verborrea (~731 MB). Disponible por solo $2.99 USD o en el Bundle completo.
+                <strong>🧠 Anima Logic (Liquid AI LFM 2.5 1.2B):</strong> Módulo especializado en razonamiento deductivo y lógica estricta. Utiliza la revolucionaria arquitectura LFM de Liquid AI calibrada para análisis matemático, descomposición analítica de problemas y estructuración de proyectos complejos sin rodeos ni verborrea (~731 MB). Incluido en cualquier plan Pro (mensual, anual o vitalicio).
               </span>
               <span class="en">
-                <strong>🧠 Anima Logic (Liquid AI LFM 2.5 1.2B):</strong> Specialized module for deductive reasoning and strict logic. Leverages Liquid AI's revolutionary LFM architecture calibrated for mathematical breakdown, analytical problem solving, and complex project structuring without fluff (~731 MB). Available for only $2.99 USD or in the Full Bundle.
+                <strong>🧠 Anima Logic (Liquid AI LFM 2.5 1.2B):</strong> Specialized module for deductive reasoning and strict logic. Leverages Liquid AI's revolutionary LFM architecture calibrated for mathematical breakdown, analytical problem solving, and complex project structuring without fluff (~731 MB). Included in any Pro plan (monthly, annual, or lifetime).
               </span>
             </div>
 
             <!-- Anima Deep Column -->
             <div style="flex: 1; min-width: 260px; max-width: 360px; line-height: 1.7; color: var(--text-mid); text-align: justify; font-size: 0.95rem; padding-left: 4px;">
               <span class="es">
-                <strong>🚀 Anima Deep (Google DeepMind Gemma 4 E2B QAT):</strong> Nuestro núcleo más potente, optimizado por Google DeepMind mediante cuantización QAT. Requiere 6 GB de RAM y ofrece razonamiento filosófico superior, análisis visual de fotos y memoria RAG para consultar libros y documentos PDF masivos. Disponible por $4.99 USD o incluido en el Bundle de por vida.
+                <strong>🚀 Anima Deep (Google DeepMind Gemma 4 E2B QAT):</strong> Nuestro núcleo más potente, optimizado por Google DeepMind mediante cuantización QAT. Requiere 6 GB de RAM y ofrece razonamiento filosófico superior, análisis visual de fotos y memoria RAG para consultar libros y documentos PDF masivos. Incluido en cualquier plan Pro (mensual, anual o vitalicio).
               </span>
               <span class="en">
-                <strong>🚀 Anima Deep (Google DeepMind Gemma 4 E2B QAT):</strong> Our most powerful intelligence core, optimized by Google DeepMind via QAT quantization. Requires 6 GB of RAM and delivers superior philosophical reasoning, visual photo analysis, and RAG document memory for massive PDFs and books. Available for $4.99 USD or included in the Lifetime Bundle.
+                <strong>🚀 Anima Deep (Google DeepMind Gemma 4 E2B QAT):</strong> Our most powerful intelligence core, optimized by Google DeepMind via QAT quantization. Requires 6 GB of RAM and delivers superior philosophical reasoning, visual photo analysis, and RAG document memory for massive PDFs and books. Included in any Pro plan (monthly, annual, or lifetime).
               </span>
             </div>
 
@@ -2484,26 +2500,26 @@
 
       <!-- ——— PRICING & MONETIZATION ——— -->
       <section id="pricing">
-        <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
           <div class="section-title">
-            <h2 class="es">Precios Transparentes. Sin Suscripciones Forzosas.</h2>
-            <h2 class="en">Transparent Pricing. Zero Forced Subscriptions.</h2>
+            <h2 class="es">Precios Claros. Sin Suscripción Obligatoria.</h2>
+            <h2 class="en">Clear Pricing. No Subscription Required.</h2>
             <p class="es" style="font-size: 1.15rem; max-width: 820px; margin: 12px auto 0; opacity: 0.85;">
-              Disfruta de AI-Diary 100% gratis para siempre con Anima Light o adquiere módulos avanzados con un único pago de por vida. Sin cuotas mensuales ni cobros ocultos.
+              Empieza gratis para siempre con Anima Light. Cuando quieras el resto de los cerebros, la visión, el módulo clínico y la bóveda cifrada, elige mensual, anual o de por vida — los tres desbloquean exactamente lo mismo.
             </p>
             <p class="en" style="font-size: 1.15rem; max-width: 820px; margin: 12px auto 0; opacity: 0.85;">
-              Enjoy AI-Diary 100% free forever with Anima Light or unlock advanced modules with a single lifetime payment. No monthly fees or hidden charges.
+              Start free forever with Anima Light. When you want every other brain, vision, the clinical module and the encrypted vault, pick monthly, annual, or lifetime — all three unlock exactly the same thing.
             </p>
           </div>
 
-          <div class="pricing-grid">
-            
+          <div class="pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));">
+
             <!-- Plan 1: Free Tier -->
             <div class="pricing-card">
               <div>
                 <div class="pricing-header">
-                  <div class="pricing-title es">Edición Estándar</div>
-                  <div class="pricing-title en">Standard Edition</div>
+                  <div class="pricing-title es">Anima Light</div>
+                  <div class="pricing-title en">Anima Light</div>
                   <div class="pricing-subtitle es">Todo lo esencial para un diario inteligente y privado.</div>
                   <div class="pricing-subtitle en">Everything you need for a private, intelligent journal.</div>
                 </div>
@@ -2532,8 +2548,8 @@
                   </li>
                   <li class="pricing-feature-item">
                     <span class="pricing-check">✓</span>
-                    <span class="es"><strong>6 Tests Psicométricos:</strong> Big Five, MBTI, Holland con reportes PDF.</span>
-                    <span class="en"><strong>6 Psychometric Tests:</strong> Big Five, MBTI, Holland with PDF exports.</span>
+                    <span class="es"><strong>6 Tests Psicométricos:</strong> OCEAN (Mini-IPIP, validado), 16 Tipos, Holland, con reportes PDF.</span>
+                    <span class="en"><strong>6 Psychometric Tests:</strong> OCEAN (Mini-IPIP, validated), 16 Types, Holland, with PDF exports.</span>
                   </li>
                   <li class="pricing-feature-item">
                     <span class="pricing-check">✓</span>
@@ -2554,22 +2570,119 @@
               </a>
             </div>
 
-            <!-- Plan 2: Anima Full Unlock (FEATURED BUNDLE) -->
+            <!-- Plan 2: Monthly -->
+            <div class="pricing-card">
+              <div>
+                <div class="pricing-header">
+                  <div class="pricing-title es">Pro Mensual</div>
+                  <div class="pricing-title en">Pro Monthly</div>
+                  <div class="pricing-subtitle es">Prueba todo el potencial de Anima sin compromiso largo.</div>
+                  <div class="pricing-subtitle en">Try the full power of Anima with no long commitment.</div>
+                </div>
+
+                <div class="pricing-price">
+                  <span class="price-num">$6.99</span>
+                  <span class="price-period es">USD / Mes</span>
+                  <span class="price-period en">USD / Month</span>
+                </div>
+
+                <ul class="pricing-features">
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es"><strong>Todos los cerebros:</strong> Anima Light + Logic (Liquid LFM) + Deep (Gemma 4).</span>
+                    <span class="en"><strong>Every brain:</strong> Anima Light + Logic (Liquid LFM) + Deep (Gemma 4).</span>
+                  </li>
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es"><strong>Visión Multimodal Local:</strong> Describe y analiza fotos en tu propio procesador.</span>
+                    <span class="en"><strong>Local Multimodal Vision:</strong> Describe and analyze photos on device.</span>
+                  </li>
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es"><strong>Módulo Clínico &amp; RAG:</strong> Preguntas y análisis sobre PDFs y libros enteros.</span>
+                    <span class="en"><strong>Clinical &amp; RAG Module:</strong> Q&amp;A and deep analysis on full PDFs and books.</span>
+                  </li>
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es"><strong>Bóveda Cifrada AES-256:</strong> Cifrado militar SQLCipher de toda la base de datos.</span>
+                    <span class="en"><strong>AES-256 Encrypted Vault:</strong> Military-grade SQLCipher database encryption.</span>
+                  </li>
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es">Cancela cuando quieras, directamente desde la tienda de tu teléfono.</span>
+                    <span class="en">Cancel anytime, directly from your phone's store.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <a href="#features" class="pricing-btn btn-free">
+                <span class="es">Probar Mensual</span>
+                <span class="en">Try Monthly</span>
+              </a>
+            </div>
+
+            <!-- Plan 3: Annual (FEATURED) -->
             <div class="pricing-card featured-plan">
               <div class="pricing-badge">
-                💎 <span class="es">Mejor Valor · Ahorra 20%</span><span class="en">Best Value · Save 20%</span>
+                💎 <span class="es">Mejor Valor · Ahorra 58%</span><span class="en">Best Value · Save 58%</span>
               </div>
 
               <div>
                 <div class="pricing-header">
-                  <div class="pricing-title es" style="color: var(--primary);">Anima Full Unlock</div>
-                  <div class="pricing-title en" style="color: var(--primary);">Anima Full Unlock</div>
-                  <div class="pricing-subtitle es">El paquete definitivo de por vida. Desbloquea todos los módulos.</div>
-                  <div class="pricing-subtitle en">The ultimate lifetime bundle. Unlocks every module forever.</div>
+                  <div class="pricing-title es" style="color: var(--primary);">Pro Anual</div>
+                  <div class="pricing-title en" style="color: var(--primary);">Pro Annual</div>
+                  <div class="pricing-subtitle es">Todo Anima, al precio más bajo por mes.</div>
+                  <div class="pricing-subtitle en">All of Anima, at the lowest price per month.</div>
                 </div>
 
                 <div class="pricing-price">
-                  <span class="price-num" style="color: var(--primary);">$16.99</span>
+                  <span class="price-num" style="color: var(--primary);">$34.99</span>
+                  <span class="price-period es">USD / Año · menos de $3/mes</span>
+                  <span class="price-period en">USD / Year · under $3/mo</span>
+                </div>
+
+                <ul class="pricing-features">
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es"><strong>Todo lo del plan mensual</strong>, facturado una vez al año.</span>
+                    <span class="en"><strong>Everything in the monthly plan</strong>, billed once a year.</span>
+                  </li>
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es"><strong>Ahorro real:</strong> $6.99 × 12 = $83.88 al año pagando mes a mes. Con el anual pagas $34.99: un 58% menos.</span>
+                    <span class="en"><strong>Real savings:</strong> $6.99 × 12 = $83.88/year paying monthly. The annual plan is $34.99: 58% less.</span>
+                  </li>
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es">Todos los cerebros, visión, RAG clínico y bóveda cifrada, sin límites.</span>
+                    <span class="en">Every brain, vision, clinical RAG and encrypted vault, no limits.</span>
+                  </li>
+                  <li class="pricing-feature-item">
+                    <span class="pricing-check">✓</span>
+                    <span class="es">Cancela cuando quieras; conservas el acceso hasta el fin del periodo pagado.</span>
+                    <span class="en">Cancel anytime; you keep access until the paid period ends.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <a href="#features" class="pricing-btn btn-primary-plan">
+                <span class="es">Elegir Anual ($34.99)</span>
+                <span class="en">Choose Annual ($34.99)</span>
+              </a>
+            </div>
+
+            <!-- Plan 4: Lifetime -->
+            <div class="pricing-card">
+              <div>
+                <div class="pricing-header">
+                  <div class="pricing-title es">Pro Vitalicio</div>
+                  <div class="pricing-title en">Pro Lifetime</div>
+                  <div class="pricing-subtitle es">Un solo pago. Tuyo para siempre, sin renovaciones.</div>
+                  <div class="pricing-subtitle en">One payment. Yours forever, no renewals.</div>
+                </div>
+
+                <div class="pricing-price">
+                  <span class="price-num">$79.99</span>
                   <span class="price-period es">USD / Pago Único (Lifetime)</span>
                   <span class="price-period en">USD / One-Time (Lifetime)</span>
                 </div>
@@ -2577,98 +2690,43 @@
                 <ul class="pricing-features">
                   <li class="pricing-feature-item">
                     <span class="pricing-check">✓</span>
-                    <span class="es"><strong>TODOS los Motores de IA:</strong> Anima Light (Gemma 3) + Anima Logic (Liquid LFM $2.99) + Anima Deep (Gemma 4 $4.99).</span>
-                    <span class="en"><strong>ALL AI Engines:</strong> Anima Light (Gemma 3) + Anima Logic (Liquid LFM $2.99) + Anima Deep (Gemma 4 $4.99).</span>
+                    <span class="es">Exactamente lo mismo que el plan anual, para siempre.</span>
+                    <span class="en">Exactly the same as the annual plan, forever.</span>
                   </li>
                   <li class="pricing-feature-item">
                     <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Visión Multimodal Local ($3.99):</strong> Describe y analiza fotos en tu propio procesador.</span>
-                    <span class="en"><strong>Local Multimodal Vision ($3.99):</strong> Describe and analyze photos on device.</span>
+                    <span class="es">Nunca vuelves a ver un muro de pago ni una renovación.</span>
+                    <span class="en">You will never see a paywall or a renewal again.</span>
                   </li>
                   <li class="pricing-feature-item">
                     <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Módulo Clínico &amp; RAG ($3.99):</strong> Preguntas y análisis sobre PDFs y libros enteros.</span>
-                    <span class="en"><strong>Clinical &amp; RAG Module ($3.99):</strong> Q&amp;A and deep analysis on full PDFs and books.</span>
+                    <span class="es">Un pago razonable frente al anual: se amortiza en poco más de dos años.</span>
+                    <span class="en">A fair multiple of the annual price: pays for itself in just over two years.</span>
                   </li>
                   <li class="pricing-feature-item">
                     <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Blindaje Total AES-256 ($4.99):</strong> Cifrado militar SQLCipher de toda la base de datos.</span>
-                    <span class="en"><strong>AES-256 Full Rest-Encryption ($4.99):</strong> Military SQLCipher database encryption.</span>
-                  </li>
-                  <li class="pricing-feature-item">
-                    <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Ahorro Inmediato:</strong> Precio individual acumulado $20.95 → Tu precio: <strong>$16.99</strong>.</span>
-                    <span class="en"><strong>Instant Savings:</strong> Individual total $20.95 → Your price: <strong>$16.99</strong>.</span>
-                  </li>
-                  <li class="pricing-feature-item">
-                    <span class="pricing-check">✓</span>
-                    <span class="es">Tuyo para siempre. Sin mensualidades ni renovaciones forzosas.</span>
-                    <span class="en">Yours forever. Zero monthly fees or forced renewals.</span>
-                  </li>
-                </ul>
-              </div>
-
-              <a href="#features" class="pricing-btn btn-primary-plan">
-                <span class="es">Desbloquear Todo de por Vida ($16.99)</span>
-                <span class="en">Unlock Everything Lifetime ($16.99)</span>
-              </a>
-            </div>
-
-            <!-- Plan 3: Modular à la Carte -->
-            <div class="pricing-card">
-              <div>
-                <div class="pricing-header">
-                  <div class="pricing-title es">Módulos a la Carta</div>
-                  <div class="pricing-title en">À la Carte Modules</div>
-                  <div class="pricing-subtitle es">Adquiere únicamente las herramientas que necesitas.</div>
-                  <div class="pricing-subtitle en">Purchase only the specific tools you need.</div>
-                </div>
-
-                <div class="pricing-price">
-                  <span class="price-num">$2.99 – $4.99</span>
-                  <span class="price-period es">USD / Módulo</span>
-                  <span class="price-period en">USD / Module</span>
-                </div>
-
-                <ul class="pricing-features">
-                  <li class="pricing-feature-item">
-                    <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Anima Logic ($2.99):</strong> Liquid AI LFM 2.5 (1.2B) para lógica deductiva.</span>
-                    <span class="en"><strong>Anima Logic ($2.99):</strong> Liquid AI LFM 2.5 (1.2B) for deductive logic.</span>
-                  </li>
-                  <li class="pricing-feature-item">
-                    <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Visión Multimodal ($3.99):</strong> Proyector visual para fotos.</span>
-                    <span class="en"><strong>Multimodal Vision ($3.99):</strong> Visual projector for photo analysis.</span>
-                  </li>
-                  <li class="pricing-feature-item">
-                    <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Módulo Clínico &amp; RAG ($3.99):</strong> Indexación semántica de PDFs.</span>
-                    <span class="en"><strong>Clinical &amp; RAG Module ($3.99):</strong> Semantic PDF document indexing.</span>
-                  </li>
-                  <li class="pricing-feature-item">
-                    <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Anima Deep ($4.99):</strong> Google DeepMind Gemma 4 E2B QAT sabio.</span>
-                    <span class="en"><strong>Anima Deep ($4.99):</strong> Google DeepMind Gemma 4 E2B QAT sage.</span>
-                  </li>
-                  <li class="pricing-feature-item">
-                    <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Blindaje SQLCipher AES-256 ($4.99):</strong> Cifrado de disco militar.</span>
-                    <span class="en"><strong>SQLCipher AES-256 ($4.99):</strong> Military-grade disk encryption.</span>
-                  </li>
-                  <li class="pricing-feature-item">
-                    <span class="pricing-check">✓</span>
-                    <span class="es"><strong>Pase Anual de Nuevos Cerebros ($4.99/año):</strong> Actualizaciones futuras (Opcional).</span>
-                    <span class="en"><strong>Brain Upgrade Pass ($4.99/yr):</strong> Future AI generation access (Optional).</span>
+                    <span class="es">Ideal para quien ya sabe que se queda.</span>
+                    <span class="en">Ideal for people who already know they're staying.</span>
                   </li>
                 </ul>
               </div>
 
               <a href="#features" class="pricing-btn btn-free">
-                <span class="es">Ver Módulos en la App</span>
-                <span class="en">View Modules in App</span>
+                <span class="es">Comprar Vitalicio</span>
+                <span class="en">Buy Lifetime</span>
+              </a>
             </div>
 
+          </div>
+
+          <!-- ——— WHY LIFETIME ISN'T A GIMMICK: THE LOCAL-AI ARGUMENT ——— -->
+          <div style="max-width: 780px; margin: 40px auto 0; text-align: center; padding: 24px 28px; background: var(--grad-vivid-soft); border: 1px solid var(--border); border-radius: var(--radius-md);">
+            <p class="es" style="font-size: 1.05rem; font-weight: 600; color: var(--text); line-height: 1.6; margin: 0;">
+              🛡️ Rosebud y Mindsera se apagan el día que dejan de pagar su factura de OpenAI. AI Diary corre entero en tu teléfono — si nosotros desaparecemos mañana, tu diario sigue funcionando.
+            </p>
+            <p class="en" style="font-size: 1.05rem; font-weight: 600; color: var(--text); line-height: 1.6; margin: 0;">
+              🛡️ Rosebud and Mindsera go dark the day they stop paying their OpenAI bill. AI Diary runs entirely on your phone — if we disappeared tomorrow, your diary would keep working.
+            </p>
           </div>
         </div>
       </section>
@@ -2931,8 +2989,8 @@
                     <td class="es"><strong>Modelo Comercial y Accesibilidad</strong></td>
                     <td class="en"><strong>Commercial Model &amp; Accessibility</strong></td>
                     <td style="background: rgba(var(--primary-rgb), 0.06); font-weight: 700;">
-                      <span class="es">⚡ Anima Light 100% GRATIS para siempre + Desbloqueos de pago único</span>
-                      <span class="en">⚡ Anima Light 100% FREE forever + Pay-once module unlocks</span>
+                      <span class="es">⚡ Anima Light 100% GRATIS para siempre + Pro desde $6.99/mes, sin obligar a suscribirse</span>
+                      <span class="en">⚡ Anima Light 100% FREE forever + Pro from $6.99/mo, no forced subscription</span>
                     </td>
                     <td class="es">❌ Cobros forzosos de $20 USD por adelantado antes de verificar compatibilidad</td>
                     <td class="en">❌ Forced $20 USD upfront charges before verifying device compatibility</td>
@@ -2975,7 +3033,7 @@
 
                 <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                    <span style="font-weight: 800; color: var(--primary); font-size: 1rem;">Anima Logic ($2.99)</span>
+                    <span style="font-weight: 800; color: var(--primary); font-size: 1rem;">Anima Logic (Pro)</span>
                     <span style="font-size: 0.75rem; padding: 3px 8px; background: rgba(var(--primary-rgb), 0.1); border-radius: 12px; color: var(--primary); font-weight: 700;">4 GB - 6 GB RAM</span>
                   </div>
                   <p class="es" style="font-size: 0.85rem; color: var(--text-mid); line-height: 1.5; margin-bottom: 8px;">
@@ -2988,7 +3046,7 @@
 
                 <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                    <span style="font-weight: 800; color: var(--primary); font-size: 1rem;">Anima Deep ($4.99 / Bundle)</span>
+                    <span style="font-weight: 800; color: var(--primary); font-size: 1rem;">Anima Deep (Pro)</span>
                     <span style="font-size: 0.75rem; padding: 3px 8px; background: rgba(var(--primary-rgb), 0.1); border-radius: 12px; color: var(--primary); font-weight: 700;">8 GB - 12 GB+ RAM</span>
                   </div>
                   <p class="es" style="font-size: 0.85rem; color: var(--text-mid); line-height: 1.5; margin-bottom: 8px;">
@@ -3271,7 +3329,7 @@
             
             <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 20px; margin-bottom: 24px;">
               <div style="display: flex; align-items: center; gap: 14px;">
-                <div style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(69, 69, 192, 0.4);">
+                <div style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(120deg, var(--primary) 0%, var(--accent) 60%, var(--gold-dark) 100%); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(69, 69, 192, 0.4);">
                   🔒
                 </div>
                 <div>
