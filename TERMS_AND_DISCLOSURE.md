@@ -44,7 +44,7 @@ Al descargar, instalar o utilizar la aplicación **AI Diary** (en adelante, la "
 ---
 
 ### 7. Soberanía de Datos y Privacidad 100% On-Device
-AI Diary procesa el 100% de tus pensamientos, textos y reflexiones localmente en la memoria interna de tu dispositivo (SQLite / SQLCipher AES-256) con **0 KB transmitidos a servidores de la nube**. El control y custodia física de los datos reside exclusivamente en el Usuario.
+AI Diary procesa el 100% de tus pensamientos, textos y reflexiones localmente en la memoria interna de tu dispositivo (base de datos SQLite local) con **0 KB transmitidos a servidores de la nube**. El control y custodia física de los datos reside exclusivamente en el Usuario.
 
 ---
 
@@ -90,7 +90,7 @@ By downloading, installing, or using the **AI Diary** application (the "Applicat
 ---
 
 ### 7. Data Sovereignty & 100% On-Device Privacy
-AI Diary operates with an offline-first architecture (SQLite / AES-256 SQLCipher Vault) sending **0 KB to cloud servers**. Complete custody and security of stored data rests exclusively with the User.
+AI Diary operates with an offline-first architecture (local SQLite database) sending **0 KB to cloud servers**. Complete custody and security of stored data rests exclusively with the User.
 
 ---
 
