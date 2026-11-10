@@ -1,6 +1,6 @@
 # 📜 Términos de Servicio, Acuerdo de Uso y Exención de Responsabilidad de IA
-**AI Diary – Offline & Private AI Sanctuary**  
-**Última actualización:** 18 de Agosto de 2026 | **Entidad Responsable:** Christeck
+**Anima AI Lab: Agents Sandbox (anteriormente AI Diary) – Offline Local LLM & Agent Sandbox**  
+**Última actualización:** 27 de Octubre de 2026 (Histórico previo: 18 de Agosto de 2026) | **Entidad Responsable:** Christeck | **Paquete:** `com.christeck.aidiary`
 
 ---
 
